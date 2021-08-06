@@ -1,17 +1,24 @@
-
+import style from './Profile.module.css';
 
 const Profile = () => {
     return (
-        <div className='content'>
-          <div className='bgDescription'>
-            <div className='avatar'></div>
-            <div className='description'>ghghghghghgh</div>
+        <div className={style.content}>
+          <div className={style.bgDescription}>
+            <div className={style.avatar}></div>
+            <div className={style.description}>ghghghghghgh</div>
           </div>
           <div>
-            my posts
+            My posts
            <div>new post</div>
+           <div className={style.posts}>
+             <div className={style.item}>
+               post1
+             </div>
+             <div className={style.item}>
+               post2
+             </div>
+           </div>
           </div>
-          <div>post1</div>
       </div>);
 }
 
