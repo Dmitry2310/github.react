@@ -3,7 +3,7 @@ import MyPosts from './MyPosts/MyPosts';
 
 const Profile = () => {
     return (
-        <div className={style.content}>
+        <div>
           <div className={style.bgDescription}>
             <div className={style.avatar}></div>
             <div className={style.description}>ghghghghghgh</div>

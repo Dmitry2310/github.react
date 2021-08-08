@@ -4,3 +4,10 @@
   width: 100%;
   justify-content: center;
 }
+
+.content {
+  background-color: #456677;
+  width: 65%;
+  margin-left: 30px;
+  margin-top: 30px;
+}
