@@ -2,8 +2,10 @@
 
 .nav {
   display: flex;
+  align-self:flex-start;
   flex-wrap: wrap;
   width: 15%;
+  max-height: 405px;
   margin-top: 30px;
 }
 .item {
