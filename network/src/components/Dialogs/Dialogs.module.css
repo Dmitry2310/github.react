@@ -1,0 +1,44 @@
+.dialogs {
+    display: flex;
+    height: 100%;
+}
+.dialogItems {
+    width: 20%;
+}
+.dialogItems .active {
+    border-bottom:rgba(0, 0, 0, 0.8) 1px solid;
+    color: black;
+}
+.messages {
+    width: 80%;
+}
+.message {
+    padding: 20px;
+    background-color: rgba(243, 242, 235, 0.979);
+    margin-top: 16px;
+    border-radius: 6px;
+}
+.dialog {
+    width: 70%;
+    padding: 0px;
+    margin-top: 2px;
+    border-bottom:rgba(0, 0, 0, 0.1) 1px solid;
+    -moz-transition: all 0.2s ease-in 0s;
+    -webkit-transition: all 0.2s ease-in 0s;
+    -o-transition: all 0.2s ease-in 0s;
+    transition: all 0.2s ease-in 0s;
+}
+.dialog:hover {
+    cursor: pointer;
+    border-bottom:rgba(0, 0, 0, 0.8) 1px solid;
+}
+.dialog a {
+    text-decoration: none;
+    line-height: 50px;
+    font-size: 18px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    color: #918e8e;
+}
+

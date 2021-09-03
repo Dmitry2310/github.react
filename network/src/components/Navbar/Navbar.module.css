@@ -9,7 +9,7 @@
   margin-top: 30px;
 }
 .item {
-  width: 100%;
+  width: 80%;
   border-bottom: 1px solid silver;
 }
 .item > a {
@@ -25,6 +25,9 @@
   -webkit-transition: all 0.2s ease-in 0s;
   -o-transition: all 0.2s ease-in 0s;
   transition: all 0.2s ease-in 0s;
+}
+.item > a.active {
+  color: rgba(0, 0, 0, 1);
 }
 .nav > div:hover a {
   color: rgba(0, 0, 0, 0.8);

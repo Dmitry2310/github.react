@@ -2,16 +2,23 @@ import style from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = () => {
+
+  let posts = [
+    { id: 1, post: 'hi', likesCount: 12 },
+    { id: 2, post: 'hi, how are u?', likesCount: 9 },
+    { id: 3, post: 'It\'s my first progect!', likesCount: 16 }];
+
+    let postsElements = posts.map((post) => <Post message={post.name} likesCount={post.likesCount} />);
+
+
   return (
     <div>
-      My posts
-      <div>
-        <textarea></textarea>
-        <button>Add Post</button>
+      <div className={style.writeMessage}>
+        <div className={style.area}><textarea placeholder='Whats up?'></textarea></div>
+        <div className={style.button}><button>Add Post</button></div>
       </div>
       <div className={style.posts}>
-        <Post message = 'hi, how are u?' likesCount = '0'/>
-        <Post message = 'my first progect!' likesCount = '23'/>
+        {postsElements}
       </div>
     </div>
   );
