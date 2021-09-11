@@ -4,6 +4,9 @@
     display: flex;
     background-color: #000;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
   .header img {
     width: 70px;
