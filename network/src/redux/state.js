@@ -20,11 +20,11 @@ let store = {
                 { id: 4, name: 'Sveta' }]
         }
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber() {
         console.log('state changed');
+    },
+    getState() {
+        return this._state;
     },
     addPost() {
         let newPost = {
@@ -37,11 +37,25 @@ let store = {
         this._callSubscriber(this._state);
     },
     updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
+
     },
     subscribe(observer) {
         this._callSubscriber = observer;
+    },
+    dispatch (action) {
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: 4,
+                post: this._state.profilePage.newPostText,
+                likesCount: 0
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
     }
 }
 
