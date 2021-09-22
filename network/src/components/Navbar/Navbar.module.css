@@ -7,6 +7,8 @@
   width: 15%;
   max-height: 405px;
   margin-top: 30px;
+  position: sticky;
+  top: 75px;
 }
 .item {
   width: 80%;

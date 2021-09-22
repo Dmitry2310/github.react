@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+const SEND_MESSAGE = 'SEND_MESSAGE';
 
 let store = {
     _state: {
@@ -11,15 +13,16 @@ let store = {
             newPostText: ''
         },
         messagesPage: {
-            messages: [
-                { id: 1, message: 'hi' },
-                { id: 2, message: 'how ar u?' },
-                { id: 3, message: 'gav gav' }],
             dialogs: [
                 { id: 1, name: 'Bob' },
                 { id: 2, name: 'Mary' },
                 { id: 3, name: 'Viktor' },
-                { id: 4, name: 'Sveta' }]
+                { id: 4, name: 'Sveta' }],
+            messages: [
+                { id: 1, message: 'hi' },
+                { id: 2, message: 'how ar u?' },
+                { id: 3, message: 'gav gav' }],
+            newMessageText : ''    
         }
     },
     _callSubscriber() {
@@ -44,6 +47,14 @@ let store = {
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.messagesPage.newMessageText = action.body;
+            this._callSubscriber(this._state);
+        } else if (action.type === SEND_MESSAGE) {
+            let body = this._state.messagesPage.newMessageText;
+            this._state.messagesPage.messages.push({ id: 4, message: body });
+            this._callSubscriber(this._state);
+            this._state.messagesPage.newMessageText = '';
         }
     }
 }
@@ -57,6 +68,17 @@ export const updateNewPostTextActionCreator = (text) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText: text
+    }
+}
+export const sendMessageCreator = () => {
+    return {
+        type: SEND_MESSAGE
+    }
+}
+export const updateMessageCreator = (body) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        body: body
     }
 }
 
