@@ -5,10 +5,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { Provider } from './components/Dialogs/StoreContext';
+import { BrowserRouter } from 'react-router-dom';
 
 
-let rerenderEntireTree = (state) => {
-    ReactDOM.render(<App store = {store} state={state} dispatch={store.dispatch.bind(store)} />, document.getElementById('root'));
+let rerenderEntireTree = () => {
+    ReactDOM.render(
+        <BrowserRouter>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </BrowserRouter>, document.getElementById('root'));
 };
 
 rerenderEntireTree(store.getState());
