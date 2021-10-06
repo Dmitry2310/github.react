@@ -1,0 +1,52 @@
+.human {
+    display: flex;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgb(65 139 144 / 20%), 0 2px 6px rgb(0 0 0 / 32%);
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    padding: 10px 0 10px 0;
+    align-items: center;
+    border-radius: 6px;
+}
+.avatar {
+    width: 20%;
+    text-align: center;
+}
+.avatar > img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    object-fit: cover;
+}
+.users {
+    width: 60%;
+}
+.item {
+    color: #000;
+    text-align: left;
+    padding: 5px;
+  }
+  .but {
+      width: 20%;
+      text-align: center;
+  }
+  .but > button {
+    outline: none;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    font-size: 14px;
+    color: #444;
+    height: 35px;
+    width: 90px;
+    text-decoration: none;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgb(65 139 144 / 20%), 0 2px 6px rgb(0 0 0 / 32%);
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    margin: 25px 0 25px 0;
+}
+.but > button:hover {
+    transition: all 0.2s;
+	box-shadow: 0 7px 14px rgb(65 139 144 / 40%), 0 3px 6px rgb(0 0 0 / 32%);
+}
