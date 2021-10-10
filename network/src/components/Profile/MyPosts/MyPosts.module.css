@@ -26,6 +26,10 @@
     transition: all 0.2s;
 	box-shadow: 0 7px 14px rgb(65 139 144 / 40%), 0 3px 6px rgb(0 0 0 / 32%);
 }
+.button > button:active {
+    box-shadow: 0px 4px 8px #2f5066;
+    transform: scale(0.95);
+  }
 .area {
     display: flex;
     width: 50%;
