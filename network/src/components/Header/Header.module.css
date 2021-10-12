@@ -2,11 +2,13 @@
 .header {
     width: 100%;
     display: flex;
-    background-color: #000;
+    background-color: #fff;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 10;
+    box-shadow: 0 7px 14px rgb(65 139 144 / 10%), 0 3px 6px rgb(0 0 0 / 22%);
+    background-image: linear-gradient(to left ,rgb(76, 64, 233), rgba(208, 212, 224, 0.329));
   }
   .header img {
     width: 70px;
@@ -14,7 +16,7 @@
   }
   .header span {
     display: inline-block;
-    color: #fff;
+    color: rgb(100, 97, 97);
     font-weight: bolder;
     font-size: 150%;
     margin-left: 20px;
