@@ -2,26 +2,31 @@
 import React from 'react';
 import style from './Users.module.css';
 import userPhoto from './assets/images/user.png';
+import { NavLink } from 'react-router-dom';
 
 let Users = (props) => {
-    
+
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-        let pages = [];
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i);
-        }
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
+    }
 
     return (
         <div>
             <div>
                 {pages.map(page => {
                     return <span className={props.currentPage === page && style.selectedPage}
-                        onClick={(e) => {props.onPageChanget(page); }}>{page}</span>
+                        onClick={(e) => { props.onPageChanget(page); }}>{page}</span>
                 })}
             </div>
             {props.users.map((user) =>
                 <div key={user.id} className={style.human}>
-                    <div className={style.avatar}><img src={user.photos.small != null ? user.photos.small : userPhoto} alt="picture" /></div>
+                    <NavLink to={'/profile/' + user.id}>
+                    <div className={style.avatar}>
+                        <img src={user.photos.small != null ? user.photos.small : userPhoto} alt="picture" />
+                    </div>
+                    </NavLink>
                     <div className={style.users}>
                         <div className={style.item}>{user.name}</div>
                         <div className={style.item}>{user.status}</div>
@@ -31,8 +36,8 @@ let Users = (props) => {
                     </div>
                     <div className={style.but}>
                         {user.followed
-                            ? <button onClick={() => {props.unFollow(user.id) }}>Unsubscribe</button>
-                            : <button onClick={() => {props.follow(user.id) }}>Sibscribe</button>
+                            ? <button onClick={() => { props.unFollow(user.id) }}>Unsubscribe</button>
+                            : <button onClick={() => { props.follow(user.id) }}>Sibscribe</button>
                         }
                     </div>
                 </div>

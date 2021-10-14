@@ -12,6 +12,8 @@
 .avatar {
     width: 20%;
     text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .avatar > img {
     width: 100px;
