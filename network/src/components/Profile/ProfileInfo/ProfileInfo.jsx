@@ -1,5 +1,7 @@
 import style from './ProfileInfo.module.css';
 import Preloader from './../../common/preloader/Preloader';
+import userPhoto from './../../Users/assets/images/user.png';
+import bgImage from './../Assets/Images/bg.jpg';
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -7,9 +9,16 @@ const ProfileInfo = (props) => {
   }
   return (
     <div className={style.bgDescription}>
-      <img src={props.profile.photos.large} />
-      <div className={style.avatar}></div>
-      <div className={style.description}>ghghghghghgh</div>
+      <img src = {bgImage} className={style.bgImg}/>
+      <div className={style.avatarContainer}>
+        <img src={props.profile.photos.small != null ? props.profile.photos.small : userPhoto} />
+      </div>
+      <div className={style.description}>
+        <div className={style.item}>{props.profile.fullName}</div>
+        <div className={style.item}>{props.profile.aboutMe}</div>
+        <div className={style.item}>{props.profile.lookingForAJobDescription}</div>
+        <div className={style.item}>{}</div>
+      </div>
     </div>
   );
 }
