@@ -1,10 +1,12 @@
 
 .header {
+    position: relative;
     width: 100%;
-    display: flex;
     background-color: #fff;
     align-items: center;
     position: sticky;
+    display: flex;
+    align-items: center;
     top: 0;
     z-index: 10;
     box-shadow: 0 7px 14px rgb(65 139 144 / 10%), 0 3px 6px rgb(0 0 0 / 22%);
@@ -14,10 +16,40 @@
     width: 70px;
     margin-left: 30px;
   }
-  .header span {
+  .header > span {
     display: inline-block;
     color: rgb(100, 97, 97);
     font-weight: bolder;
     font-size: 150%;
     margin-left: 20px;
+  }
+  .loginBlock {
+    display: inline-block;
+    position: absolute;
+    right: 30px;
+  }
+  .loginBlock > a {
+    display: inline-block;
+    outline: none;
+    text-align: center;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    font-size: 16px;
+    color: #444;
+    height: 35px;
+    line-height: 35px;
+    width: 90px;
+    text-decoration: none;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgb(65 139 144 / 20%), 0 1px 3px rgb(0 0 0 / 32%);
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+  }
+  .loginBlock:hover {
+    transition: all 0.2s;
+	  box-shadow: 0 7px 14px rgb(65 139 144 / 40%), 0 3px 6px rgb(0 0 0 / 32%);
+  }
+  .loginBlock:active {
+    box-shadow: 0px 4px 8px #2f5066;
+    transform: scale(0.95);
   }
