@@ -25,9 +25,9 @@ let Users = (props) => {
             {props.users.map((user) =>
                 <div key={user.id} className={style.human}>
                     <NavLink to={'/profile/' + user.id}>
-                    <div className={style.avatar}>
-                        <img src={user.photos.small != null ? user.photos.small : userPhoto} alt="picture" />
-                    </div>
+                        <div className={style.avatar}>
+                            <img src={user.photos.small != null ? user.photos.small : userPhoto} alt="picture" />
+                        </div>
                     </NavLink>
                     <div className={style.users}>
                         <div className={style.item}>{user.name}</div>
@@ -37,31 +37,36 @@ let Users = (props) => {
                         <div className={style.item}>{"user.location.country"}</div>
                     </div>
                     <div className={style.but}>
-                        {user.followed ? <button onClick={() => { 
+                        {user.followed ?
+                            <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
+                                props.setFollowingProgress(true, user.id);
                                 usersAPI.followAPI(user.id).then(data => {
                                     if (data.resultCode === 0) {
                                         props.unFollow(user.id);
                                     }
+                                    props.setFollowingProgress(false, user.id);
                                 });
-                             }}>Unsubscribe</button>
-                            : <button onClick={() => { 
-
+                            }}>Unsubscribe</button>
+                            : <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
+                                props.setFollowingProgress(true, user.id);
                                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
                                     withCredentials: true,
                                     headers: {
-                                        'API-KEY' : '2c764cb3-4b05-4ea7-9034-a0dec41567b0'
+                                        'API-KEY': '2c764cb3-4b05-4ea7-9034-a0dec41567b0'
                                     }
                                 }).then(response => {
                                     if (response.data.resultCode === 0) {
                                         props.follow(user.id);
                                     }
+                                    props.setFollowingProgress(false, user.id);
                                 });
                             }}>Sibscribe</button>
                         }
                     </div>
                 </div>
-            )}
-        </div>
+            )
+            }
+        </div >
     )
 }
 
