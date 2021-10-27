@@ -1,9 +1,9 @@
 import React from "react";
 import Users from "./Users";
 import { connect } from 'react-redux';
-import { follow, unFollow, setUsers, setCurrentPage, setUsersTotalCount, setIsFetching, setFollowingProgress } from "../../redux/users-reducer";
+import { follow, unFollow, setCurrentPage, setFollowingProgress, getUsers, changePage } from "../../redux/users-reducer";
 import Preloader from "../common/preloader/Preloader";
-import  usersAPI  from "./../../api/api";
+
 
 
 
@@ -14,20 +14,10 @@ class UsersAPIComponent extends React.Component {
     }*/
 
     componentDidMount() {
-        this.props.setIsFetching(true);
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.setIsFetching(false);
-            this.props.setUsers(data.items);
-            this.props.setUsersTotalCount(data.totalCount);
-        })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
     onPageChanget = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.setIsFetching(true);
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.setIsFetching(false);
-            this.props.setUsers(data.items);
-        });
+        this.props.changePage(pageNumber, this.props.pageSize);
     }
 
     render() {
@@ -40,7 +30,6 @@ class UsersAPIComponent extends React.Component {
                 unFollow={this.props.unFollow}
                 follow={this.props.follow}
                 users={this.props.users}
-                setFollowingProgress={this.props.setFollowingProgress}
                 followingInProgress={this.props.followingInProgress} />
         </>
     }
@@ -58,5 +47,5 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    follow, unFollow, setUsers, setCurrentPage, setUsersTotalCount, setIsFetching, setFollowingProgress
-})(UsersAPIComponent);
+    follow, unFollow, setCurrentPage,
+     setFollowingProgress, getUsers, changePage})(UsersAPIComponent);
