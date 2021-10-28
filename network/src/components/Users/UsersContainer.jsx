@@ -3,6 +3,7 @@ import Users from "./Users";
 import { connect } from 'react-redux';
 import { follow, unFollow, setCurrentPage, setFollowingProgress, getUsers, changePage } from "../../redux/users-reducer";
 import Preloader from "../common/preloader/Preloader";
+import { WithAuthRedirect} from '../hoc/AuthRedirect';
 
 
 
@@ -33,7 +34,7 @@ class UsersAPIComponent extends React.Component {
                 followingInProgress={this.props.followingInProgress} />
         </>
     }
-}
+};
 
 let mapStateToProps = (state) => {
     return {
@@ -44,8 +45,10 @@ let mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress
     }
-}
+};
+
+let AuthRedirectComponent = WithAuthRedirect(UsersAPIComponent);
 
 export default connect(mapStateToProps, {
     follow, unFollow, setCurrentPage,
-     setFollowingProgress, getUsers, changePage})(UsersAPIComponent);
+     setFollowingProgress, getUsers, changePage})(AuthRedirectComponent);

@@ -5,7 +5,7 @@ import Message from './Message/MessageItem';
 const Dialogs = (props) => {
   let state = props.messagesPage;
   let dialogsElements = state.dialogs.map((dialog) => <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />);
-  let messagesElements = state.messages.map((message) => < Message message={message.message} key={message.id}/>);
+  let messagesElements = state.messages.map((message) => < Message message={message.message} key={message.id} />);
   let newMessageText = state.newMessageText;
 
   let onSendMessage = () => {
@@ -15,6 +15,7 @@ const Dialogs = (props) => {
     let body = event.target.value;
     props.updateNewMessageBody(body);
   }
+
 
   return (
     <div className={style.dialogs}>
