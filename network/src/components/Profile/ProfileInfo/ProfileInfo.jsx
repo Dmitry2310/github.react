@@ -9,15 +9,17 @@ const ProfileInfo = (props) => {
   }
   return (
     <div className={style.bgDescription}>
-      <img src = {bgImage} className={style.bgImg}/>
+      <img src={bgImage} className={style.bgImg} />
       <div className={style.avatarContainer}>
         <img src={props.profile.photos.small != null ? props.profile.photos.small : userPhoto} />
       </div>
       <div className={style.description}>
-        <div className={style.item}>{props.profile.fullName}</div>
+        <div className={style.item}>
+          <div className={style.userName}>{props.profile.fullName}</div>
+        </div>
         <div className={style.item}>{props.profile.aboutMe}</div>
         <div className={style.item}>{props.profile.lookingForAJobDescription}</div>
-        <div className={style.item}>{}</div>
+        <div className={style.item}>{ }</div>
       </div>
     </div>
   );

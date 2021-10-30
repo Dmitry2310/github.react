@@ -36,9 +36,8 @@ img.bgImg {
  .description {
    flex-direction: column;
    display: flex;
-   
-   height: 85%;
-   width: 40%;
+   height: 100%;
+   width: 60%;
    background-image: linear-gradient(to left ,rgb(255,255,255), rgba(255,255,255,0));
  }
  .item {
@@ -47,5 +46,8 @@ img.bgImg {
   padding: 5px;
   min-height: 20px;
   text-align: right;
+}
+ .userName {
+  font-size: 22px;
 }
  
