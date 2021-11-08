@@ -19,7 +19,7 @@ const ProfileInfo = (props) => {
           <div className={style.userName}>{props.profile.fullName}</div>
         </div>
         <div className={style.item}>
-          < ProfileStatus status={'Hello everybody'}/>
+          < ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
         </div>
         <div className={style.item}>{props.profile.aboutMe}</div>
         <div className={style.item}>{props.profile.lookingForAJobDescription}</div>
