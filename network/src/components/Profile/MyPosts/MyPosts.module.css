@@ -30,16 +30,13 @@
     box-shadow: 0px 4px 8px #2f5066;
     transform: scale(0.95);
   }
-.area {
+  .area {
     display: flex;
     width: 50%;
     margin-bottom: 25px;
     border: none;
     border-radius: 6px;
     box-shadow: 0 8px 12px rgb(65 139 144 / 20%), 0 2px 6px rgb(0 0 0 / 32%);
-}
-.area > textarea {
-    
 }
 .posts {
     margin-top: 20px;

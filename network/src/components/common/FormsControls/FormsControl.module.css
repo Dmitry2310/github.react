@@ -1,0 +1,17 @@
+.formControl  {
+    width: 50%;
+}
+.formControl > textarea {
+    width: 100%;
+}
+.formControl.error > textarea {
+    border: 1px solid red;
+}
+.formControl.error > input {
+    border: 1px solid red;
+}
+.formControl > span {
+    color: red;
+}
+
+

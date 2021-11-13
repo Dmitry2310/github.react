@@ -18,6 +18,5 @@ let mapDispatchToProps = (dispatch) => {
 }
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  WithAuthRedirect
+  connect(mapStateToProps, mapDispatchToProps)
 )(Dialogs);
