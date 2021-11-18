@@ -30,7 +30,7 @@
     box-shadow: 0px 4px 8px #2f5066;
     transform: scale(0.95);
   }
-  .area {
+.area {
     display: flex;
     width: 50%;
     margin-bottom: 25px;

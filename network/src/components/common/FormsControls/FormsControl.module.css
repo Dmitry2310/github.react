@@ -13,5 +13,10 @@
 .formControl > span {
     color: red;
 }
+.formSummaryError {
+    border: 1px solid red;
+    padding: 5px;
+    color: red;
+}
 
 
