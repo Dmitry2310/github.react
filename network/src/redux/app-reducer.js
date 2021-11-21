@@ -22,7 +22,7 @@ export const inicializationSuccess = () => ({ type: SET_INICIALIZATION })
 
 export const initializeApp = () => (dispatch) => {
     let promise = dispatch(getAuthUserData());
-    Promise.all ([promise]).then(() => { dispatch(inicializationSuccess()) });
+    Promise.all([promise]).then(() => { dispatch(inicializationSuccess()) });
 }
 
 
