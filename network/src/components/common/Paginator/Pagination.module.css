@@ -1,3 +1,41 @@
 .selectedPage{
     font-weight: bold;
 }
+.paginator {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px 20px 0;
+}
+.paginator > span {
+    display: inline-block;
+    margin: 0 5px 0 5px;
+}
+.paginator > span:hover {
+    cursor: pointer;
+    color: darkgrey;
+}
+.button {
+    display: inline-block;
+    outline: none;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    font-size: 14px;
+    color: #444;
+    height: 25px;
+    line-height: 25px;
+    width: 70px;
+    margin: 0 5px 0 5px;
+    text-decoration: none;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgb(65 139 144 / 20%), 0 1px 3px rgb(0 0 0 / 32%);
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+  }
+  .button:hover {
+    transition: all 0.2s;
+	  box-shadow: 0 7px 14px rgb(65 139 144 / 40%), 0 3px 6px rgb(0 0 0 / 32%);
+  }
+  .button:active {
+    box-shadow: 0px 4px 8px #2f5066;
+    transform: scale(0.95);
+  }
