@@ -8,9 +8,16 @@ const ProfileInfo = (props) => {
   if (!props.profile) {
     return <Preloader />
   }
+
+  const mainPhotoSelected = (e) => {
+    if (e.target.files.length) {
+      props.savePhoto(e.target.files[0]);
+    }
+  }
   return (
     <div className={style.bgDescription}>
       <img src={bgImage} className={style.bgImg} />
+      {props.isOwner && <input type={'file'} onChange={mainPhotoSelected} />}
       <div className={style.avatarContainer}>
         <img src={props.profile.photos.small != null ? props.profile.photos.small : userPhoto} />
       </div>
@@ -19,7 +26,7 @@ const ProfileInfo = (props) => {
           <div className={style.userName}>{props.profile.fullName}</div>
         </div>
         <div className={style.item}>
-          < ProfileSatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+          < ProfileSatusWithHooks status={props.status} updateStatus={props.updateStatus} />
         </div>
         <div className={style.item}>{props.profile.aboutMe}</div>
         <div className={style.item}>{props.profile.lookingForAJobDescription}</div>
