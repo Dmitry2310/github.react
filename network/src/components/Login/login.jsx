@@ -7,9 +7,9 @@ import { Redirect } from "react-router";
 import style from './../common/FormsControls/FormsControl.module.css';
 
 
-const LoginForm = (props) => {
+const LoginForm = ({ error, captchaUrl, handleSubmit }) => {
     return (
-        <form action="#" onSubmit={props.handleSubmit}>
+        <form action="#" onSubmit={handleSubmit}>
             <div>
                 {createField('Email', 'email', [required], LoginInput)}
             </div>
@@ -20,9 +20,17 @@ const LoginForm = (props) => {
             <div>
                 <Field type={'checkbox'} name={'rememberMe'} component={LoginInput} /> remember me
             </div>
-            {props.error &&
+            {captchaUrl &&
+                <div>
+                    <img alt={'captchaUrl'} src={captchaUrl} />
+                </div>}
+                {captchaUrl &&
+                <div>
+                   {createField('Symbols from image', 'captcha', [required], LoginInput)}
+                </div>}
+            {error &&
                 <div className={style.formSummaryError}>
-                    {props.error}
+                    {error}
                 </div>}
             <div>
                 <button>Login</button>
@@ -35,7 +43,7 @@ const LoginReduxForm = reduxForm({ form: 'loginForm' })(LoginForm)
 
 const LoginPage = (props) => {
     const onSubmitFunc = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe);
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
 
     if (props.isAuth) {
@@ -45,13 +53,14 @@ const LoginPage = (props) => {
     return (
         <div>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmitFunc} />
+            <LoginReduxForm onSubmit={onSubmitFunc} captchaUrl={props.captchaUrl} />
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
 })
 
 export default connect(mapStateToProps, { login, logout })(LoginPage);
