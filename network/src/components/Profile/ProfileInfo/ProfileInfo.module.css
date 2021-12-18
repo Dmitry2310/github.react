@@ -3,7 +3,7 @@
   position: relative;
   display: flex;
   width: 100%;
-  height: 200px;
+  height: 500px;
 	background-size: cover;
   justify-content: flex-end;
   align-items: center;
@@ -43,11 +43,30 @@ img.bgImg {
  .item {
   color: #000;
   text-align: left;
-  padding: 5px;
+  padding-top: 5px;
+  padding-left: 45%;
   min-height: 20px;
-  text-align: right;
 }
+.itemStatus {
+  color: blanchedalmond;
+  position: absolute;
+  top: 260px;
+  left: 20px;
+ }
  .userName {
   font-size: 22px;
+}
+.contact {
+  padding-left: 15px;
+}
+.editButton {
+  position: absolute;
+  top: 260px;
+  right: 60px;
+}
+.formSummaryError {
+  border: 1px solid red;
+  padding: 2px;
+  color: red;
 }
  

@@ -1,4 +1,4 @@
-import style from './ProfileInfo.module.css';
+//import style from './ProfileInfo.module.css';
 import React, { useState, useEffect } from 'react';
 
 const ProfileSatusWithHooks = (props) => {
