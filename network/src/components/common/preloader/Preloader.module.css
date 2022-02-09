@@ -1,0 +1,12 @@
+.preloaderWrapper {
+    height: 100vh;
+    background-color:#fff;
+    z-index: 100;
+}
+
+.preloader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+

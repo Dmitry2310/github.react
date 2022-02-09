@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid silver;
-    
+    width: 100%;
 }
 .button > button {
     margin-left: 20px;
@@ -30,9 +30,9 @@
     box-shadow: 0px 4px 8px #2f5066;
     transform: scale(0.95);
   }
-.area {
+.writeMessage .area {
     display: flex;
-    width: 50%;
+    width: 100%;
     margin-bottom: 25px;
     border: none;
     border-radius: 6px;

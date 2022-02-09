@@ -1,18 +1,28 @@
 .selectedPage{
-    font-weight: bold;
+    color:rgb(79, 119, 206);
+    font-weight: bolder;
+    border-bottom: 2px solid silver;
 }
 .paginator {
     display: flex;
     justify-content: center;
     margin: 20px 0px 20px 0;
 }
+.paginator > div {
+    display: flex;
+    width: 40px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px 0 5px;
+}
 .paginator > span {
     display: inline-block;
     margin: 0 5px 0 5px;
 }
-.paginator > span:hover {
+.paginator > div:hover {
     cursor: pointer;
-    color: darkgrey;
+    font-weight: bolder;
+    color: rgb(79, 119, 206);
 }
 .button {
     display: inline-block;

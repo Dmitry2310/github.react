@@ -28,10 +28,11 @@ const ProfileInfo = (props) => {
     );
   }
 
-
   return (
+
     <div className={style.bgDescription}>
       <img src={bgImage} alt={''} className={style.bgImg} />
+      <span className={style.title}>Change photo</span>
       {props.isOwner && <input type={'file'} onChange={mainPhotoSelected} />}
       <div className={style.avatarContainer}>
         <img alt={''} src={props.profile.photos.small != null ? props.profile.photos.small : userPhoto} />

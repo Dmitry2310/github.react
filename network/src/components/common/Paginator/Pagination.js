@@ -15,6 +15,7 @@ let Pagination = ({ totalItemsCount, pageSize, currentPage, onPageChanget, porti
     let [portionNumber, setPortionNumber] = useState(1);
     let leftBorder = (portionNumber - 1) * portionSize + 1;
     let rightBorder = portionNumber * portionSize;
+
     return (
         <div className={style.paginator}>
 
@@ -23,9 +24,10 @@ let Pagination = ({ totalItemsCount, pageSize, currentPage, onPageChanget, porti
             }
 
             {pages.filter(page => page >= leftBorder && page <= rightBorder).map((page) => {
-                return (<span className={ currentPage === page && style.selectedPage}
-                    key={page}
-                    onClick={(e) => { onPageChanget(page); }}>{page}</span>
+                return (
+                    <div className={currentPage === page && style.selectedPage}>
+                        <span key={page} onClick={(e) => { onPageChanget(page); }}>{page}</span>
+                    </div>
                 )
             })
             }

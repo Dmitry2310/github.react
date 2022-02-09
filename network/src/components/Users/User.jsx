@@ -27,7 +27,7 @@ let User = ({ user, followingInProgress, unFollow, follow }) => {
                     }}>Unsubscribe</button>
                     : <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
                         follow(user.id);
-                    }}>Sibscribe</button>
+                    }}>Subscribe</button>
                 }
             </div>
         </div>

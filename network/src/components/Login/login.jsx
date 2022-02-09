@@ -4,7 +4,7 @@ import { required } from '../../utilits/validators/validators';
 import { connect } from "react-redux";
 import { login, logout } from "../../redux/auth-reducer";
 import { Redirect } from "react-router";
-import style from './../common/FormsControls/FormsControl.module.css';
+import style from './Login.module.css';
 
 
 const LoginForm = ({ error, captchaUrl, handleSubmit }) => {
@@ -42,6 +42,7 @@ const LoginForm = ({ error, captchaUrl, handleSubmit }) => {
 const LoginReduxForm = reduxForm({ form: 'loginForm' })(LoginForm)
 
 const LoginPage = (props) => {
+
     const onSubmitFunc = (formData) => {
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }

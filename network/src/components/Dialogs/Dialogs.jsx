@@ -13,7 +13,7 @@ const Dialogs = (props) => {
   let addNewMessage = (formData) => {
     props.sendMessage(formData.newMessageText);
   }
-
+  
   return (
     <div className={style.dialogs}>
       <div className={style.dialogItems}>

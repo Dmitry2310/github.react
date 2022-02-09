@@ -20,6 +20,7 @@ const ProfileSatusWithHooks = (props) => {
     const onStatusChange = (e) => {
         setStatus(e.currentTarget.value);
     }
+    
     return (
         <div>
             {!editMode &&

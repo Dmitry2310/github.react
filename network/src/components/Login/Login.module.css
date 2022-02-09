@@ -1,0 +1,32 @@
+form {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+}
+form > div {
+    margin-top: 10px;
+}
+
+.formControl  {
+   
+}
+.formControl > textarea {
+    width: 100%;
+}
+.formControl.error > textarea {
+    border: 1px solid red;
+}
+.formControl.error > input {
+    border: 1px solid red;
+}
+.formControl > span {
+    color: red;
+}
+.formSummaryError {
+    border: 1px solid red;
+    padding: 5px;
+    color: red;
+    width: 25%;
+}
+
+
