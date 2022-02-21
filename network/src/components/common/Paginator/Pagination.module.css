@@ -1,3 +1,8 @@
+
+.pageNumber{
+    color:gray;
+    font-weight: normal;
+}
 .selectedPage{
     color:rgb(79, 119, 206);
     font-weight: bolder;
