@@ -2,11 +2,11 @@ import React from 'react';
 import './App.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
-import UsersContainer from './components/Users/UsersContainer';
+import { UsersPage } from './components/Users/UsersContainer';
 import { Route } from 'react-router-dom';
 import { connect } from "react-redux";
 import { Switch } from 'react-router-dom';
-import LoginPage from './components/Login/login';
+import { LoginPage } from './components/Login/login';
 import { initializeApp } from './redux/app-reducer';
 import { compose } from 'redux';
 import { withRouter } from 'react-router';
@@ -42,7 +42,7 @@ class App extends React.Component<PropsType> {
             <Route exact path='/' render={() => WithSuspense(ProfileContainer)}></Route>
             <Route path='/profile/:userId?' render={() => <SuspendedConteinerProfile />}></Route>
             <Route path='/dialogs' render={() => <SuspendedDialogsContainer />}></Route>
-            <Route path='/users' render={() => < UsersContainer />}></Route>
+            <Route path='/users' render={() => < UsersPage />}></Route>
             <Route path='/login' render={() => < LoginPage />}></Route>
           </Switch>
         </div>

@@ -10,24 +10,39 @@ type Propstype = {
     onFilterChanged: (filter: FilterType) => void
 }
 
-const UsersSearchForm: React.FC<Propstype> = ({onFilterChanged}) => {
+type FormType = {
+    term: string,
+    friend: string
+}
 
-    const submit = (values: FilterType,
+const UsersSearchForm: React.FC<Propstype> = ({ onFilterChanged }) => {
+
+    const submit = (values: FormType,
         { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
-            onFilterChanged(values);
-            setSubmitting(false);
+            const filter: FilterType = {
+                term: values.term,
+                friend: values.friend === "null" ? null : values.friend === "true" ? true : false
+            }
+        onFilterChanged(filter);
+        setSubmitting(false);
     }
 
     return (
         <div>
             <div>
                 <Formik
-                    initialValues={{ term: '' }}
+                    initialValues={{ term: '', friend: "null" }}
                     validate={usersSearchFormValidate}
-                    onSubmit={submit}>
+                    onSubmit={submit}
+                    >
                     {({ isSubmitting }) => (
                         <Form>
                             <Field type="text" name="term" />
+                            <Field name="friend" as="select">
+                                <option value="null">All</option>
+                                <option value="true">Only followed</option>
+                                <option value="false">Only unfollowed</option>
+                            </Field>
                             <button type="submit" disabled={isSubmitting}>
                                 Find
                             </button>

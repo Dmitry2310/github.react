@@ -12,7 +12,7 @@ type PropsType = {
     follow: (userId: number) => void
 }
 
-let User: React.FC<PropsType> = ({ user, followingInProgress, unFollow, follow }) => {
+const User: React.FC<PropsType> = ({ user, followingInProgress, unFollow, follow }) => {
     return (
         <div className={style.human}>
             <NavLink to={'/profile/' + user.id}>

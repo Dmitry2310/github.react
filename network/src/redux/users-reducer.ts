@@ -12,7 +12,8 @@ let initialState = {
     isFetching: true,
     followingInProgress: [] as Array<number>,
     filter: {
-        term: ''
+        term: '',
+        friend: null as null | boolean
     }
 };
 
@@ -71,7 +72,7 @@ export const actions = {
     unFollowSuccess: (userId: number) => ({ type: 'USER/UNFOLLOW', userId } as const),
     setUsers: (users: Array<UserType>) => ({ type: 'USER/SET_USERS', users } as const),
     setCurrentPage: (currentPage: number) => ({ type: 'USER/SET_CURRENT_PAGE', currentPage: currentPage } as const),
-    setFilter: (term: string) => ({ type: 'USER/SET_FILTER', payload: { term } } as const),
+    setFilter: (filter: FilterType) => ({ type: 'USER/SET_FILTER', payload: filter } as const),
     setUsersTotalCount: (totalUsersCount: number) => ({ type: 'USER/SET_TOTAL_USERS_COUNT', count: totalUsersCount } as const),
     setIsFetching: (isFetching: boolean) => ({ type: 'USER/TOGGLE_IS_FETCHING', isFetching } as const),
     setFollowingProgress: (isFetching: boolean, userId: number) => ({ type: 'USER/TOGGLE_IS_FOLLOWING_PROGRESS', isFetching, userId } as const)
@@ -80,11 +81,11 @@ export const actions = {
 type DispatchType = Dispatch<ActionsTypes>;
 type ThunkType = BaseThunkType<ActionsTypes>
 
-export const getUsers = (currentPage: number, pageSize: number, term: string): ThunkType => async (dispatch) => {
+export const getUsers = (currentPage: number, pageSize: number, filter: FilterType): ThunkType => async (dispatch) => {
     dispatch(actions.setCurrentPage(currentPage));
     dispatch(actions.setIsFetching(true));
-    dispatch(actions.setFilter(term));
-    let data = await usersAPI.getUsers(currentPage, pageSize, term);
+    dispatch(actions.setFilter(filter));
+    let data = await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend);
     dispatch(actions.setIsFetching(false));
     dispatch(actions.setUsers(data.items));
     dispatch(actions.setUsersTotalCount(data.totalCount));
@@ -95,7 +96,7 @@ const followUnFollowFlow = async (dispatch: DispatchType, userId: number, apiMet
         (userId: number) => ActionsTypes) => {
     dispatch(actions.setFollowingProgress(true, userId));
     let data = await apiMethod(userId);
-    if (data.resultCode == 0) {
+    if (data.resultCode === 0) {
         dispatch(actionCreator(userId));
     }
     dispatch(actions.setFollowingProgress(false, userId));
