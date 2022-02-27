@@ -12,7 +12,7 @@ const ProfileSatusWithHooks: React.FC<PropsType> = (props) => {
     let [status, setStatus] = useState(props.status);
 
     useEffect( () => {
-        setStatus(props.status);
+        setStatus(props.status)
     }, [props.status]);
 
     const activateEditMode = () => {
@@ -25,7 +25,7 @@ const ProfileSatusWithHooks: React.FC<PropsType> = (props) => {
     const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value);
     }
-    
+
     return (
         <div>
             {!editMode &&
