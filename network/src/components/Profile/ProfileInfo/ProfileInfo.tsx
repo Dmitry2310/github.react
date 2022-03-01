@@ -6,6 +6,7 @@ import ProfileSatusWithHooks from './ProfileStatusWithHooks';
 import React, { ChangeEvent, useState } from 'react';
 import ProfileDataFormReduxform from './ProfileDataForm';
 import { ContactsType, ProfileType } from '../../../redux/types/types';
+import { Button } from 'antd';
 
 type ProfileInfoType = {
   profile: ProfileType | null,
@@ -13,7 +14,7 @@ type ProfileInfoType = {
   status: string,
   updateStatus: (status: string) => void,
   savePhoto: (file: File) => void,
-  saveProfile: (profileType: ProfileType) => Promise<any>
+  saveProfile: (profileType: ProfileType) => void
 }
 
 const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
@@ -31,19 +32,28 @@ const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
   }
 
   const onSubmitFunc = (formData: ProfileType) => {
-    props.saveProfile(formData).then(
-      () => {
-        setEditMode(false);
-      }
-    );
+    props.saveProfile(formData);
+    setEditMode(false);
   }
+
+  // const onSubmitFunc = (formData: ProfileType) => {
+  //   props.saveProfile(formData).then(
+  //     () => {
+  //       setEditMode(false);
+  //     }
+  //   );
+  // }
 
   return (
 
     <div className={style.bgDescription}>
       <img src={bgImage} alt={''} className={style.bgImg} />
-      <span className={style.title}>Change photo</span>
-      {props.isOwner && <input type={'file'} onChange={mainPhotoSelected} />}
+      {props.isOwner &&
+        <div>
+          <span className={style.title}>Change photo</span>
+          <input type={'file'} onChange={mainPhotoSelected} />
+        </div>
+      }
       <div className={style.avatarContainer}>
         <img alt={''} src={props.profile.photos.small != null ? props.profile.photos.small : userPhoto} />
       </div>
@@ -58,7 +68,7 @@ const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
 }
 
 type ProfileDataPropsType = {
-  profile: ProfileType, 
+  profile: ProfileType,
   isOwner: boolean,
   goToEditMode: () => void
 }
@@ -66,23 +76,28 @@ type ProfileDataPropsType = {
 const ProfileData: React.FC<ProfileDataPropsType> = ({ profile, isOwner, goToEditMode }) => {
   return (
     <div className={style.description}>
-      {isOwner && <div className={style.editButton}> <button onClick={goToEditMode}>Edit</button> </div>}
-      <div className={style.item}>
-        <div className={style.userName}><b>Name</b> : {profile.fullName}</div>
-      </div>
-
-      <div className={style.item}>
-        <b>Looking for a job</b> :{profile.lookingForAJob ? 'yes' : 'no'}
-      </div>
-      {profile.lookingForAJob &&
-        <div className={style.item}>
-          <b>My skills</b> :{profile.lookingForAJobDescription}
+      {isOwner &&
+        <Button className={style.editButton} onClick={goToEditMode}>
+          Edit
+        </Button>}
+      <div className={style.userData}>
+        <div >
+          <div className={style.userName}><b>Name</b> : {profile.fullName}</div>
         </div>
-      }
-      <div className={style.item}>
-        <b>About me</b> :{profile.aboutMe}
+
+        <div >
+          <b>Looking for a job</b> :{profile.lookingForAJob ? 'yes' : 'no'}
+        </div>
+        {profile.lookingForAJob &&
+          <div >
+            <b>My skills</b> :{profile.lookingForAJobDescription}
+          </div>
+        }
+        <div >
+          <b>About me</b> :{profile.aboutMe}
+        </div>
       </div>
-      <div className={style.item}>
+      <div className={style.contacts}>
         <b>Contacts</b> : {Object.keys(profile.contacts).map(key => {
           return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]} />
         })}

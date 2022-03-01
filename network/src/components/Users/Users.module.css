@@ -2,7 +2,7 @@
     display: flex;
     background-color: #fff;
     box-shadow: 0 4px 6px rgb(65 139 144 / 20%), 0 2px 6px rgb(0 0 0 / 32%);
-    width: 90%;
+    width: 70%;
     margin: 0 auto;
     margin-bottom: 15px;
     padding: 10px 0 10px 0;
@@ -34,7 +34,7 @@
       width: 20%;
       text-align: center;
 }
-.but > button {
+/* .but > button {
     outline: none;
     border: 1px solid #fff;
     border-radius: 50px;
@@ -47,7 +47,7 @@
     box-shadow: 0 4px 6px rgb(65 139 144 / 20%), 0 2px 6px rgb(0 0 0 / 32%);
     transition: box-shadow 0.2s;
     margin: 25px 0 25px 0;
-}
+} */
 .but > button:hover {
     transition: all 0.2s;
 	box-shadow: 0 7px 14px rgb(65 139 144 / 40%), 0 3px 6px rgb(0 0 0 / 32%);

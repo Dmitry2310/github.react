@@ -11,7 +11,7 @@ const Post: React.FC<PropsType> = (props) => {
     <div className={style.item}>
       <img src='https://images3.alphacoders.com/690/690494.jpg' alt={''}></img>
       <div className={style.news}>{props.message}</div>
-      <div className={style.likes}><span>Likes</span> {props.likesCount}</div> 
+      <div className={style.likes}>Likes {props.likesCount}</div> 
     </div>
   );
 }

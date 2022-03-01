@@ -41,4 +41,6 @@
 .posts {
     margin-top: 20px;
     justify-content: center;
+    width: 80%;
+    margin-left: 10%;
 }

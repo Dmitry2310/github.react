@@ -1,12 +1,18 @@
-
+.userData {
+  width: 30%;
+  margin-left: 30%;
+}
+.contacts {
+  width: 30%;
+  
+}
 .bgDescription {
   position: relative;
   display: flex;
   width: 100%;
-  height: 400px;
+  height: 300px;
 	background-size: cover;
-  justify-content: flex-end;
-  align-items: center;
+  flex-wrap: nowrap;
 }
 img.bgImg {
   position: absolute;
@@ -34,22 +40,14 @@ img.bgImg {
   object-fit: cover;
  }
  .description {
-   flex-direction: column;
    display: flex;
    height: 100%;
-   width: 60%;
-   background-image: linear-gradient(to left ,rgb(255,255,255), rgba(255,255,255,0));
+   width: 100%;
+   background-image: linear-gradient(to left ,#1890ff, rgba(109, 74, 235, 0));
  }
- .item {
-  color: #000;
-  text-align: left;
-  padding-top: 5px;
-  padding-left: 45%;
-  min-height: 20px;
-}
 .itemStatus {
   position: absolute;
-  top: 360px;
+  top: 260px;
   left: 20px;
   background-color: #fff;
   border-radius: 20px;
@@ -59,30 +57,13 @@ img.bgImg {
   font-size: 22px;
 }
 .contact {
-  padding-left: 35px;
+  padding-left: 25px;
 }
-.editButton > button {
+ .editButton  {
   position: absolute;
-  top: 370px;
-  right: 60px;
-  display: inline-block;
-  border: 1px solid #fff;
-  border-radius: 50px;
-  font-size: 14px;
-  color: #444;
-  height: 25px;
-  line-height: 25px;
-  width: 70px;
-  text-decoration: none;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgb(65 139 144 / 20%), 0 1px 3px rgb(0 0 0 / 32%);
-  cursor: pointer;
-  transition: box-shadow 0.2s;
-}
-.editButton:hover {
-  transition: all 0.2s;
-  box-shadow: 0 7px 14px rgb(65 139 144 / 40%), 0 3px 6px rgb(0 0 0 / 32%);
-}
+  top: 15px;
+  right: 30px;
+} 
 .formSummaryError {
   border: 1px solid red;
   padding: 2px;

@@ -25,7 +25,6 @@ export const Users: FC<PropsType> = (props) => {
     type QueryParamsType = { term?: string; page?: string; friend?: string }
     
     useEffect(() => {
-        debugger;
         const querystring = require('querystring');
         const parsed = querystring.parse(history.location.search.substring(1)) as QueryParamsType
 
@@ -51,7 +50,6 @@ export const Users: FC<PropsType> = (props) => {
     }, [])
 
     useEffect(() => {
-        debugger;
         const query: QueryParamsType = {}
         if (!!filter.term) query.term = filter.term
         if (filter.friend !== null) query.friend = String(filter.friend)

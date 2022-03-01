@@ -3,14 +3,14 @@
     height: 100%;
 }
 .dialogItems {
-    width: 20%;
+    width: 30%;
 }
 .dialogItems .active {
     border-bottom:rgba(0, 0, 0, 0.8) 1px solid;
     color: black;
 }
 .messages {
-    width: 80%;
+    width: 60%;
 }
 .message {
     padding: 20px;

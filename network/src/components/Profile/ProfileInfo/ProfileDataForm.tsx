@@ -33,18 +33,20 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, ProfileDataFormOw
                     {createField<ProfileTypeKeys>('My professional skills', 'lookingForAJobDescription', [], TextArea)}
                 </div>
                 <div className={style.item}>
-                    <b>About me</b> :{profile.aboutMe}
+                    <b>About me</b> :
                     {createField<ProfileTypeKeys>('About me', 'aboutMe', [], TextArea)}
                 </div>
             </div>
+            <div><b>Contacts</b> : </div>
             <div className={style.contacts}>
-                <b>Contacts</b> : {Object.keys(profile.contacts).map(key => {
+                {Object.keys(profile.contacts).map(key => {
                     return (
                         <div key={key} className={style.contact}>
                             <b>{key}: {createField(key, 'contacts.' + key, [], LoginInput)}</b>
                         </div>
                     )
                 })}
+                
             </div>
 
         </form>

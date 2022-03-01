@@ -2,20 +2,23 @@ form {
     display: flex;
     flex-wrap: wrap;
 }
+.description {
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to left ,rgb(62, 184, 206), rgba(255,255,255,0.5));
+}
 .wrapper {
-    width: 49%;
+    width: 25%;
+    margin-left: 30%;
 }
 .contacts {
-    width: 49%;
+    width: 35%;
+    display: flex;
+    flex-wrap: wrap;
 }
-.description {
-     flex-direction: column;
-     display: flex;
-     height: 100%;
-     width: 60%;
-     background-image: linear-gradient(to left ,rgb(255,255,255), rgba(255,255,255,0.5));
-   }
-   form .item {
+form .item {
     color: #000;
     text-align: left;
     padding-top: 5px;
@@ -31,28 +34,15 @@ form {
     padding: 3px;
    }
 .userName {
-    font-size: 22px;
+    font-size: 18px;
   }
 .contact {
     padding-left: 15px;
   }
 .editButton > button {
-    position: absolute;
-    top: 370px;
-    right: 60px;
-    display: inline-block;
-    border: 1px solid #fff;
-    border-radius: 50px;
-    font-size: 14px;
-    color: #444;
-    height: 25px;
-    line-height: 25px;
-    width: 70px;
-    text-decoration: none;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgb(65 139 144 / 20%), 0 1px 3px rgb(0 0 0 / 32%);
-    cursor: pointer;
-    transition: box-shadow 0.2s;
+  position: absolute;
+  top: 15px;
+  right: 30px;
   }
 .editButton:hover {
     transition: all 0.2s;

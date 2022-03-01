@@ -1,4 +1,4 @@
-.nav {
+/*.nav {
   display: flex;
   align-self:flex-start;
   flex-wrap: wrap;
@@ -7,13 +7,10 @@
   margin-top: 30px;
   position: sticky;
   top: 75px;
-}
-.item {
-  width: 80%;
-  border-bottom: 1px solid silver;
-}
+}*/
+
 .item > a {
-  color: #918e8e;
+  color: #e2dede;
   text-decoration: none;
   font-weight: 300;
   font-size: 18px;
@@ -26,11 +23,11 @@
   -o-transition: all 0.2s ease-in 0s;
   transition: all 0.2s ease-in 0s;
 }
-.item > a.active {
-  color: rgba(0, 0, 0, 1);
+/*.item > a.active {
+  color: rgb(244, 244, 248);
   border-bottom: 1px solid black;
 }
 .nav > div:hover a {
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(213, 210, 221, 0.8);
   cursor: pointer;
-}
+}*/
