@@ -5,7 +5,7 @@ import Logo from './components/Header/assets/logo.png';
 import style from './components/Navbar/Navbar.module.css';
 import { Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import { CustomerServiceOutlined, MailOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
+import { BarsOutlined, CustomerServiceOutlined, MailOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
 import { AppHeader } from './components/Header/Header';
 import { UsersPage } from './components/Users/UsersContainer';
 import { Route } from 'react-router-dom';
@@ -21,6 +21,7 @@ import { AppStateType } from './redux/redux-store';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const ChatPage = React.lazy(() => import('./components/pages/Chat/ChatPage'));
 
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type MapDispatchPropsType = {
@@ -30,6 +31,7 @@ type PropsType = MapPropsType & MapDispatchPropsType
 
 const SuspendedDialogsContainer = WithSuspense(DialogsContainer);
 const SuspendedConteinerProfile = WithSuspense(ProfileContainer);
+const SuspendedChatPage = WithSuspense(ChatPage);
 const { Content, Footer, Sider } = Layout;
 
 class App extends React.Component<PropsType> {
@@ -69,6 +71,9 @@ class App extends React.Component<PropsType> {
             <Menu.Item key="4" icon={<CustomerServiceOutlined />}>
               <div className={style.item} ><a >Music</a></div>
             </Menu.Item>
+            <Menu.Item key="5" icon={<BarsOutlined />}>
+              <div className={style.item} ><Link to='/chat' >Chat</Link></div>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
@@ -81,6 +86,7 @@ class App extends React.Component<PropsType> {
                   <Route path='/profile/:userId?' render={() => <SuspendedConteinerProfile />}></Route>
                   <Route path='/dialogs' render={() => <SuspendedDialogsContainer />}></Route>
                   <Route path='/users' render={() => < UsersPage />}></Route>
+                  <Route path='/chat' render={() => <SuspendedChatPage/>}></Route>
                   <Route path='/login' render={() => < LoginPage />}></Route>
                 </Switch>
               </div>

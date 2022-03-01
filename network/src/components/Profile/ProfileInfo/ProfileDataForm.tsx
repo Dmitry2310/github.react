@@ -46,7 +46,7 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, ProfileDataFormOw
                         </div>
                     )
                 })}
-                
+
             </div>
 
         </form>
