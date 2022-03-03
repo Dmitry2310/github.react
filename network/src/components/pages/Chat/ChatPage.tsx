@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
-
-const wsChannel = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
-
-export type ChatMessageTupe = {
-    message: string,
-    photo: string,
-    userId: number,
-    userName: string
-}
+import { useDispatch, useSelector } from "react-redux";
+import { sendNewMessage, startMessagesListening, stopMessagesListening } from "../../../redux/chat-reducer";
+import { AppStateType } from "../../../redux/redux-store";
+import { ChatMessageTupe } from './../../../api/chatApi';
 
 const ChatPage: React.FC = () => {
 
@@ -20,6 +15,15 @@ const ChatPage: React.FC = () => {
 
 const Chat: React.FC = () => {
 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(startMessagesListening());
+        return () => {
+            dispatch(stopMessagesListening());
+        }
+    }, [])
+
     return (
         <div>
             < ChatMessages />
@@ -27,16 +31,9 @@ const Chat: React.FC = () => {
         </div>
     )
 }
-const ChatMessages: React.FC = () => {
+const ChatMessages: React.FC<{}> = () => {
 
-    const [messages, setMessages] = useState<ChatMessageTupe[]>([])
-
-    useEffect(() => {
-        wsChannel.addEventListener('message', (e: MessageEvent) => {
-            let newMessages = JSON.parse(e.data);
-            setMessages((prevMessages) => [...prevMessages, ...newMessages])
-        })
-    }, [])
+    const messages = useSelector((state: AppStateType) => state.chat.messages);
 
     return (
         <div style={{ height: 300, overflowY: 'auto' }}>
@@ -58,16 +55,18 @@ const Message: React.FC<{ message: ChatMessageTupe }> = ({ message }) => {
     )
 }
 
-const ChatMessagesForm: React.FC = () => {
+const ChatMessagesForm: React.FC<{}> = ({ }) => {
 
     const [message, setMessage] = useState('');
-
+    const [isReadyStatus, setIsReadyStatus] = useState<'pending' | 'ready'>('pending');
+    const dispatch = useDispatch();
+   
 
     const sendMessage = () => {
         if (!message) {
             return;
         }
-        wsChannel.send(message);
+        dispatch(sendNewMessage(message));
         setMessage(' ');
     }
 
@@ -77,7 +76,7 @@ const ChatMessagesForm: React.FC = () => {
                 <textarea onChange={(e) => setMessage(e.currentTarget.value)} value={message}></textarea>
             </div>
             <div>
-                <button onClick={sendMessage}>Send</button>
+                <button  onClick={sendMessage}>Send</button>
             </div>
         </div>
     )
