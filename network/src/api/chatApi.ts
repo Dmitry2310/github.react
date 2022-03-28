@@ -1,5 +1,9 @@
+import { StatusType } from "../redux/chat-reducer";
 
-type SubscribersType = (messages: ChatMessageTupe[]) => void
+type MessagesReceivedSubscribersType = (messages: ChatMessageTupe[]) => void;
+type StatusChangedubscribersType = (status: StatusType) => void;
+type EventsNamesType = 'messages-received' | 'status-changed';
+
 export type ChatMessageTupe = {
     message: string,
     photo: string,
@@ -7,24 +11,53 @@ export type ChatMessageTupe = {
     userName: string
 }
 
-let subscribers = [] as Array<SubscribersType>
+const subscribers = {
+    'messages-received': [] as Array<MessagesReceivedSubscribersType>,
+    'status-changed': [] as Array<StatusChangedubscribersType>
+}
 
 let ws: WebSocket | null = null;
 
 const closeHandler = () => {
+    notificationSubscribersStatus('pending');
     setTimeout(createChannel, 3000);
 }
 
 const messageHandler = (e: MessageEvent) => {
     const newMessages = JSON.parse(e.data);
-    subscribers.forEach(sub => sub(newMessages))
+    subscribers['messages-received'].forEach(sub => sub(newMessages));
 }
-function createChannel() {
+
+const openHandler = () => {
+    notificationSubscribersStatus('ready');
+
+    console.log('gjg')
+}
+const errorHandler = () => {
+    notificationSubscribersStatus('error');
+    console.log('RESTART PAGE');
+}
+
+const cleanUp = () => {
     ws?.removeEventListener('close', closeHandler);
+    ws?.removeEventListener('message', messageHandler);
+    ws?.removeEventListener('open', openHandler);
+    ws?.removeEventListener('error', errorHandler);
+}
+
+const notificationSubscribersStatus = (status: StatusType) =>{
+    subscribers['status-changed'].forEach(sub => sub(status));
+}
+
+function createChannel() {
+    cleanUp();
     ws?.close();
     ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx');
-    ws?.addEventListener('close', closeHandler)
-    ws.addEventListener('message', messageHandler)
+    notificationSubscribersStatus('pending');
+    ws.addEventListener('close', closeHandler);
+    ws.addEventListener('message', messageHandler);
+    ws.addEventListener('open', openHandler);
+    ws.addEventListener('error', errorHandler);
 }
 
 export const chatApi = {
@@ -32,19 +65,24 @@ export const chatApi = {
         createChannel();
     },
     stop() {
-        ws?.removeEventListener('close', closeHandler);
-        ws?.removeEventListener('message', messageHandler)
-        subscribers = [];
+        cleanUp();
+        subscribers['messages-received'] = [];
+        subscribers['status-changed'] = [];
         ws?.close();
     },
-    subscribe(callback: SubscribersType) {
-        subscribers.push(callback);
+    subscribe(eventName: EventsNamesType, callback: MessagesReceivedSubscribersType | StatusChangedubscribersType) {
+        // @ts-ignore
+        subscribers[eventName].push(callback);
+        return () => {
+            // @ts-ignore
+            subscribers[eventName] = subscribers[eventName].filter(s => s !== callback);
+        }
     },
-
-    unSubscribe(callback: SubscribersType) {
-        subscribers = subscribers.filter(sub => sub !== callback)
+    unSubscribe(eventName: EventsNamesType, callback: MessagesReceivedSubscribersType | StatusChangedubscribersType) {
+        // @ts-ignore
+        subscribers[eventName] = subscribers[eventName].filter(sub => sub !== callback);
     },
-    sendMessage (message: string) {
+    sendMessage(message: string) {
         ws?.send(message)
     }
 }

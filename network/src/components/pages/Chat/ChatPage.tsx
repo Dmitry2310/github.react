@@ -5,7 +5,6 @@ import { AppStateType } from "../../../redux/redux-store";
 import { ChatMessageTupe } from './../../../api/chatApi';
 
 const ChatPage: React.FC = () => {
-
     return (
         <div>
             < Chat />
@@ -16,6 +15,7 @@ const ChatPage: React.FC = () => {
 const Chat: React.FC = () => {
 
     const dispatch = useDispatch();
+    const status = useSelector((state: AppStateType) => state.chat.status);
 
     useEffect(() => {
         dispatch(startMessagesListening());
@@ -26,8 +26,14 @@ const Chat: React.FC = () => {
 
     return (
         <div>
-            < ChatMessages />
-            < ChatMessagesForm />
+            {status === 'error'
+                ? <div>
+                    Some error occured. Please restart the page
+                </div> :
+                <>
+                    < ChatMessages />
+                    < ChatMessagesForm />
+                </>}
         </div>
     )
 }
@@ -58,16 +64,15 @@ const Message: React.FC<{ message: ChatMessageTupe }> = ({ message }) => {
 const ChatMessagesForm: React.FC<{}> = ({ }) => {
 
     const [message, setMessage] = useState('');
-    const [isReadyStatus, setIsReadyStatus] = useState<'pending' | 'ready'>('pending');
     const dispatch = useDispatch();
-   
+    const status = useSelector((state: AppStateType) => state.chat.status);
 
     const sendMessage = () => {
-        if (!message) {
+        if (message === '') {
             return;
         }
         dispatch(sendNewMessage(message));
-        setMessage(' ');
+        setMessage('');
     }
 
     return (
@@ -76,7 +81,7 @@ const ChatMessagesForm: React.FC<{}> = ({ }) => {
                 <textarea onChange={(e) => setMessage(e.currentTarget.value)} value={message}></textarea>
             </div>
             <div>
-                <button  onClick={sendMessage}>Send</button>
+                <button disabled={status !== 'ready'} onClick={sendMessage}>Send</button>
             </div>
         </div>
     )

@@ -20,18 +20,18 @@ export const Users: FC<PropsType> = (props) => {
 
     const dispatch = useDispatch()
 
-    const history = useHistory();
+    const history = useHistory()        // read url string as (withRouter)
 
     type QueryParamsType = { term?: string; page?: string; friend?: string }
     
     useEffect(() => {
         const querystring = require('querystring');
-        const parsed = querystring.parse(history.location.search.substring(1)) as QueryParamsType
+        const parsed = querystring.parse(history.location.search.substring(1)) as QueryParamsType // cut off the question mark
 
         let actualPage = currentPage
         let actualFilter = filter
 
-        if (!!parsed.page) actualPage = Number(parsed.page)
+        if (!!parsed.page) actualPage = Number(parsed.page)         // {!!} conversion to boolean value
         if (!!parsed.term) actualFilter = { ...actualFilter, term: parsed.term as string }
 
         switch (parsed.friend) {
@@ -45,16 +45,17 @@ export const Users: FC<PropsType> = (props) => {
                 actualFilter = { ...actualFilter, friend: false }
                 break;
         }
-
         dispatch(getUsers(actualPage, pageSize, actualFilter))
     }, [])
 
     useEffect(() => {
         const query: QueryParamsType = {}
+        const querystring = require('querystring');
+
         if (!!filter.term) query.term = filter.term
         if (filter.friend !== null) query.friend = String(filter.friend)
         if (currentPage !== 1) query.page = String(currentPage)
-        const querystring = require('querystring');
+
         history.push({
             pathname: '/users',
             search: querystring.stringify(query) 

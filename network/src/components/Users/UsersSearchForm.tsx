@@ -35,7 +35,7 @@ const UsersSearchForm: React.FC<Propstype> = ({ onFilterChanged }) => {
         <div>
             <div>
                 <Formik
-                    enableReinitialize
+                    enableReinitialize   // to re-receive the passes from the url
                     initialValues={{ term: filter.term, friend: String(filter.friend) }}
                     validate={usersSearchFormValidate}
                     onSubmit={submit}
