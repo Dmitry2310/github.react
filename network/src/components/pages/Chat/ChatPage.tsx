@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { Button } from "antd";
+import TextArea from "antd/lib/input/TextArea";
+import React from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendNewMessage, startMessagesListening, stopMessagesListening } from "../../../redux/chat-reducer";
 import { AppStateType } from "../../../redux/redux-store";
-import { ChatMessageTupe } from './../../../api/chatApi';
+import { ChatMessageType } from './../../../api/chatApi';
 
 const ChatPage: React.FC = () => {
     return (
-        <div>
+        <div style={{ height: '100vh' }}>
             < Chat />
         </div>
     )
@@ -25,31 +28,43 @@ const Chat: React.FC = () => {
     }, [])
 
     return (
-        <div>
-            {status === 'error'
-                ? <div>
-                    Some error occured. Please restart the page
-                </div> :
-                <>
-                    < ChatMessages />
-                    < ChatMessagesForm />
-                </>}
+        <div style={{}}>
+            {status === 'error' && <div>Some error occured. Please restart the page</div>}
+            < ChatMessages />
+            < ChatMessagesForm />
         </div>
     )
 }
 const ChatMessages: React.FC<{}> = () => {
-
+    const messagesAnchorRef = useRef<HTMLDivElement>(null);
     const messages = useSelector((state: AppStateType) => state.chat.messages);
+    const [autoScrollIsActive, setAutoScroll] = useState(true);
+
+    const scrollHandler = (e: React.UIEvent<HTMLElement>) => {
+        const element = e.currentTarget;
+        if (Math.abs((element.scrollHeight - element.scrollTop) - element.clientHeight) < 40) {
+            !autoScrollIsActive && setAutoScroll(true);
+        } else {
+            autoScrollIsActive && setAutoScroll(false);
+        }
+    }
+
+    useEffect(() => {
+        if (autoScrollIsActive) {
+            messagesAnchorRef.current?.scrollIntoView({ behavior: "smooth" })
+        }
+    }, [messages])
 
     return (
-        <div style={{ height: 300, overflowY: 'auto' }}>
-            {messages.map((mes, index) => <Message key={index} message={mes} />)}
+        <div style={{ height: 500, overflowY: 'auto', outline: '1px solid silver' }} onScroll={scrollHandler}>
+            {messages.map((mes, index) => <Message key={mes.id} message={mes} />)}
+            <div ref={messagesAnchorRef}></div>
         </div>
     )
 }
 
-const Message: React.FC<{ message: ChatMessageTupe }> = ({ message }) => {
-
+const Message: React.FC<{ message: ChatMessageType }> = React.memo(({ message }) => {
+    console.log('message')
     return (
         <div>
             <img src={message.photo} /> <b>{message.userName}</b>
@@ -59,7 +74,7 @@ const Message: React.FC<{ message: ChatMessageTupe }> = ({ message }) => {
             <hr />
         </div>
     )
-}
+})
 
 const ChatMessagesForm: React.FC<{}> = ({ }) => {
 
@@ -78,10 +93,13 @@ const ChatMessagesForm: React.FC<{}> = ({ }) => {
     return (
         <div>
             <div>
-                <textarea onChange={(e) => setMessage(e.currentTarget.value)} value={message}></textarea>
+                <TextArea showCount maxLength={300} onChange={(e) => setMessage(e.currentTarget.value)}
+                    value={message} style={{ width: '40%', marginTop: '15px' }} />
             </div>
             <div>
-                <button disabled={status !== 'ready'} onClick={sendMessage}>Send</button>
+                <Button onClick={sendMessage} style={{ marginTop: '15px' }}>
+                    Send
+                </Button>
             </div>
         </div>
     )

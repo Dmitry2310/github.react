@@ -80,7 +80,7 @@ class App extends React.Component<PropsType> {
           <AppHeader />
           <Content style={{ margin: '24px 16px 0' }}>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              <div className='content'>
+              <div className='content' style={{ minHeight: '100vh' }}>
                 <Switch>
                   <Route exact path='/' render={() => WithSuspense(ProfileContainer)}></Route>
                   <Route path='/profile/:userId?' render={() => <SuspendedConteinerProfile />}></Route>
@@ -92,7 +92,7 @@ class App extends React.Component<PropsType> {
               </div>
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Network Design ©2022 Created by Person</Footer>
+          <Footer style={{ textAlign: 'center' }}>Network Design ©2022 Created by Dmitry</Footer>
         </Layout>
       </Layout>
     );

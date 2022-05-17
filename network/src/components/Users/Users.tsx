@@ -23,7 +23,7 @@ export const Users: FC<PropsType> = (props) => {
     const history = useHistory()        // read url string as (withRouter)
 
     type QueryParamsType = { term?: string; page?: string; friend?: string }
-    
+
     useEffect(() => {
         const querystring = require('querystring');
         const parsed = querystring.parse(history.location.search.substring(1)) as QueryParamsType // cut off the question mark
@@ -58,7 +58,7 @@ export const Users: FC<PropsType> = (props) => {
 
         history.push({
             pathname: '/users',
-            search: querystring.stringify(query) 
+            search: querystring.stringify(query)
         })
     }, [filter, currentPage])
 
@@ -80,11 +80,12 @@ export const Users: FC<PropsType> = (props) => {
             < UsersSearchForm onFilterChanged={onFilterChanged} />
             < Pagination currentPage={currentPage} onPageChanget={onPageChanget}
                 pageSize={pageSize} totalItemsCount={totalUsersCount} />
-
-            {users.map((user) => < User user={user} key={user.id}
-                followingInProgress={followingInProgress}
-                follow={followC} unFollow={unFollowC} />)
-            }
+            <div style={{height: 700, overflowY: 'auto'}}>
+                {users.map((user) => < User user={user} key={user.id}
+                    followingInProgress={followingInProgress}
+                    follow={followC} unFollow={unFollowC} />)
+                }
+            </div>
         </div>
     )
 }

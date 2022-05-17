@@ -1,10 +1,10 @@
 import { StatusType } from "../redux/chat-reducer";
 
-type MessagesReceivedSubscribersType = (messages: ChatMessageTupe[]) => void;
+type MessagesReceivedSubscribersType = (messages: ChatMessageType[]) => void;
 type StatusChangedubscribersType = (status: StatusType) => void;
 type EventsNamesType = 'messages-received' | 'status-changed';
 
-export type ChatMessageTupe = {
+export type ChatMessageType = {
     message: string,
     photo: string,
     userId: number,

@@ -1,5 +1,4 @@
 import style from './Header.module.css';
-import Logo from './assets/logo.png';
 import { Link } from 'react-router-dom';
 import { Avatar, Button, Col, Layout, Row } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
